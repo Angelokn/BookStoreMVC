@@ -14,6 +14,7 @@ namespace ProjectWeb.Data
 
         public DbSet<Category> Categories { get; set; }
         public DbSet<Product> Products { get; set; }
+        public DbSet<Company> Companies { get; set; }
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
 
 
@@ -25,6 +26,12 @@ namespace ProjectWeb.Data
                 new Category { Id = 1, Name = "Action", DisplayOrder = 1 },
                 new Category { Id = 2, Name = "SciFi", DisplayOrder = 2 },
                 new Category { Id = 3, Name = "History", DisplayOrder = 3 }
+                );
+
+            modelBuilder.Entity<Company>().HasData(
+                new Company { Id = 1, Name = "Tech Solutions", StreetAddress = "123 Tech Street", City = "Tech City", State = "IL", PostalCode = "12121", PhoneNumber = "55987643210" },
+                new Company { Id = 2, Name = "Joseph's Bookstore", StreetAddress = "631 Train Street", City = "Book City", State = "UJ", PostalCode = "89898", PhoneNumber = "55944442222" },
+                new Company { Id = 3, Name = "Readers Club", StreetAddress = "890 Read Street", City = "Read City", State = "LS", PostalCode = "06789", PhoneNumber = "55915153030" }
                 );
 
             modelBuilder.Entity<Product>().HasData(

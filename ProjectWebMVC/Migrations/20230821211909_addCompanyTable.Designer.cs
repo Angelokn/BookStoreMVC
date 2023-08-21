@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProjectWeb.Data;
 
@@ -11,9 +12,11 @@ using ProjectWeb.Data;
 namespace ProjectWeb.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230821211909_addCompanyTable")]
+    partial class addCompanyTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -300,38 +303,6 @@ namespace ProjectWeb.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Companies");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            City = "Tech City",
-                            Name = "Tech Solutions",
-                            PhoneNumber = "55987643210",
-                            PostalCode = "12121",
-                            State = "IL",
-                            StreetAddress = "123 Tech Street"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            City = "Book City",
-                            Name = "Joseph's Bookstore",
-                            PhoneNumber = "55944442222",
-                            PostalCode = "89898",
-                            State = "UJ",
-                            StreetAddress = "631 Train Street"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            City = "Read City",
-                            Name = "Readers Club",
-                            PhoneNumber = "55915153030",
-                            PostalCode = "06789",
-                            State = "LS",
-                            StreetAddress = "890 Read Street"
-                        });
                 });
 
             modelBuilder.Entity("ProjectWeb.Models.Product", b =>
