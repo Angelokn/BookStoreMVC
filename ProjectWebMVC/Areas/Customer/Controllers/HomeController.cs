@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using ProjectWeb.Models;
-using ProjectWeb.Repository;
+using ProjectWeb.Repository.IRepository;
 using ProjectWeb.Repository.UnitOfWork;
 using System.Diagnostics;
 

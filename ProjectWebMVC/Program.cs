@@ -1,10 +1,10 @@
 using Microsoft.EntityFrameworkCore;
 using ProjectWeb.Data;
-using ProjectWeb.Repository;
 using ProjectWeb.Repository.UnitOfWork;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using WebMVC.Utility;
+using ProjectWeb.Repository.IRepository;
 
 var builder = WebApplication.CreateBuilder(args);
 

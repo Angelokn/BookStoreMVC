@@ -1,7 +1,6 @@
 ﻿using ProjectWeb.Models;
-using ProjectWeb.Repository.Repository;
 
-namespace ProjectWeb.Repository
+namespace ProjectWeb.Repository.IRepository
 {
     public interface ICompanyRepository : IRepository<Company>
     {

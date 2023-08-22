@@ -1,5 +1,5 @@
 ﻿using ProjectWeb.Data;
-using ProjectWeb.Repository;
+using ProjectWeb.Repository.IRepository;
 
 namespace ProjectWeb.Repository.UnitOfWork
 {
@@ -9,6 +9,8 @@ namespace ProjectWeb.Repository.UnitOfWork
         public ICategoryRepository Category { get; private set; }
         public IProductRepository Product { get; private set; }
         public ICompanyRepository Company { get; private set; }
+        public IShoppingCartRepository ShoppingCart { get; private set; }
+
 
         public UnitOfWork(ApplicationDbContext db)
         {
@@ -16,6 +18,7 @@ namespace ProjectWeb.Repository.UnitOfWork
             Category = new CategoryRepository(_db);
             Product = new ProductRepository(_db);
             Company = new CompanyRepository(_db);
+            ShoppingCart = new ShoppingCartRepository(_db);
         }
 
         public void Save()

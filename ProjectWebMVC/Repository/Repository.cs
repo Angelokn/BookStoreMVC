@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ProjectWeb.Data;
+using ProjectWeb.Repository.IRepository;
 using System.Linq.Expressions;
 
 namespace ProjectWeb.Repository.Repository

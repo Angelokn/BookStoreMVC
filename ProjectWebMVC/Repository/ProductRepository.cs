@@ -1,5 +1,6 @@
 ﻿using ProjectWeb.Data;
 using ProjectWeb.Models;
+using ProjectWeb.Repository.IRepository;
 using ProjectWeb.Repository.Repository;
 
 namespace ProjectWeb.Repository

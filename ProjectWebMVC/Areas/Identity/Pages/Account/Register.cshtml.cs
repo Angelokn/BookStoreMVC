@@ -21,7 +21,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
 using ProjectWeb.Models;
-using ProjectWeb.Repository;
+using ProjectWeb.Repository.IRepository;
 using WebMVC.Utility;
 
 namespace ProjectWeb.Areas.Identity.Pages.Account

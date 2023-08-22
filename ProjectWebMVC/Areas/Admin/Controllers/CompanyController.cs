@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using ProjectWeb.Models;
 using ProjectWeb.Models.ViewModels;
-using ProjectWeb.Repository;
+using ProjectWeb.Repository.IRepository;
 using WebMVC.Utility;
 
 namespace ProjectWeb.Areas.Admin.Controllers
