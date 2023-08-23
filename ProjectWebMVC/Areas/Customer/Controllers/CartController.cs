@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using ProjectWeb.Models;
 using ProjectWeb.Models.ViewModels;
 using ProjectWeb.Repository.IRepository;
 using System.Security.Claims;
@@ -28,7 +29,33 @@ namespace ProjectWeb.Areas.Customer.Controllers
                 includeProperties: "Product")
             };
 
+            foreach(var cart in ShoppingCartVM.ShoppingCartList)
+            {
+                cart.Price = GetPriceBasedOnQuantity(cart);
+                ShoppingCartVM.OrderTotal += (cart.Price * cart.Count);
+            }
+
             return View(ShoppingCartVM);
+        }
+
+        private double GetPriceBasedOnQuantity(ShoppingCart shoppingCart)
+        {
+            if(shoppingCart.Count <= 2)
+            {
+                return shoppingCart.Product.Price;
+            }
+            else
+            {
+                if(shoppingCart.Count <= 3)
+                {
+                    return shoppingCart.Product.Price3;
+                }
+                else
+                {
+                    return shoppingCart.Product.Price10;
+                }
+            }
+            
         }
     }
 }
