@@ -7,7 +7,7 @@ namespace ProjectWeb.Models
     public class OrderHeader
     {
         public int Id { get; set; }
-        public int ApplicationUserId { get; set; }
+        public string ApplicationUserId { get; set; }
         [ForeignKey("ApplicationUserId")]
         [ValidateNever]
         public ApplicationUser ApplicationUser { get; set; }
@@ -22,7 +22,7 @@ namespace ProjectWeb.Models
         public string? Carrier { get; set; }
 
         public DateTime PaymentDate { get; set; }
-        public DateTime PaymentDueDate { get; set; }
+        public DateOnly PaymentDueDate { get; set; }
 
         public string? PaymentIntentId { get; set; }
 
