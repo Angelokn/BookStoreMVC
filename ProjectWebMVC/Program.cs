@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using WebMVC.Utility;
 using ProjectWeb.Repository.IRepository;
+using Stripe;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +13,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
 builder.Services.AddDbContext<ApplicationDbContext>(options=>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+builder.Services.Configure<StripeSettings>(builder.Configuration.GetSection("StripePayment"));
 
 builder.Services.AddIdentity<IdentityUser, IdentityRole>(
     //options => options.SignIn.RequireConfirmedAccount = true
@@ -39,6 +42,7 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
+StripeConfiguration.ApiKey = builder.Configuration.GetSection("StripePayment:SecretKey").Get<string>();
 
 app.UseRouting();
 app.UseAuthentication();
