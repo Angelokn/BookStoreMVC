@@ -12,7 +12,7 @@ using ProjectWeb.Data;
 namespace ProjectWeb.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230828232714_addOrderHeaderAndDetailsToDb")]
+    [Migration("20230831012341_addOrderHeaderAndDetailsToDb")]
     partial class addOrderHeaderAndDetailsToDb
     {
         /// <inheritdoc />
@@ -351,8 +351,8 @@ namespace ProjectWeb.Migrations
                     b.Property<int>("OrderHeaderId")
                         .HasColumnType("int");
 
-                    b.Property<int>("Price")
-                        .HasColumnType("int");
+                    b.Property<double>("Price")
+                        .HasColumnType("float");
 
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
