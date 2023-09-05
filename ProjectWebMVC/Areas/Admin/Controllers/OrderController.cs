@@ -5,6 +5,7 @@ using ProjectWeb.Repository.IRepository;
 
 namespace ProjectWeb.Areas.Admin.Controllers
 {
+	[Area("admin")]
 	public class OrderController : Controller
 	{
 		private readonly IUnitOfWork _unitOfWork;
