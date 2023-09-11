@@ -26,7 +26,7 @@ function loadDataTable(status) {
         "columns": [
             { data: 'id', "width": "5%" },
             { data: 'name', "width": "20%" },
-            { data: 'phoneNumber', "width": "10%" },
+            { data: 'phoneNumber', "width": "15%" },
             { data: 'applicationUser.email', "width": "20%" },
             { data: 'orderStatus', "width": "15%" },
             { data: 'orderTotal', "width": "10%" },
@@ -38,8 +38,8 @@ function loadDataTable(status) {
                                     <i class="bi bi-pencil-square"></i>
                                 </a>
                             </div>`
-                }, 
-                "width": "25%"
+                },
+                "width": "10%"
             }
         ]
     });
