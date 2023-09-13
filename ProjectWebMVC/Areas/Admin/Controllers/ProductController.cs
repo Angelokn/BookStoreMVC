@@ -60,28 +60,17 @@ namespace ProjectWeb.Areas.Admin.Controllers
 
             if (ModelState.IsValid)
             {
-                if (productVM.Product.Id == 0)
-                {
-                    _unitOfWork.Product.Add(productVM.Product);
-                    TempData["success"] = "Product created successfully";
-                }
-                else
-                {
-                    _unitOfWork.Product.Update(productVM.Product);
-                    TempData["success"] = "Product updated successfully";
-                }
-                _unitOfWork.Save();
-
                 string wwwRootPath = _webHostEnvironment.WebRootPath;
+                
                 if (file  != null)
                 {
                     string fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
-                    string productPath = Path.Combine(wwwRootPath, @"C:\Users\angel\Documents\prog\pessoal\cursos\Complete guide to ASP.NET Core MVC (.NET 8)\projects\ProjectWebMVC\ProjectWebMVC\wwwroot\images\product\");
+                    string productPath = Path.Combine(wwwRootPath,  @"images\product\");
 
                     if (!string.IsNullOrEmpty(productVM.Product.ImageUrl))
                     {
                         //delete the old image
-                        var oldImagePath = Path.Combine(wwwRootPath, productVM.Product.ImageUrl.TrimStart('/'));
+                        var oldImagePath = Path.Combine(wwwRootPath, productVM.Product.ImageUrl.TrimStart('\\'));
 
                         if (System.IO.File.Exists(oldImagePath))
                         {
@@ -94,11 +83,22 @@ namespace ProjectWeb.Areas.Admin.Controllers
                         file.CopyTo(fileStream);
                     }
 
-                    productVM.Product.ImageUrl = @"~images\product\" + fileName;
+                    productVM.Product.ImageUrl = @"\images\product\" + fileName;
                 }
 
                 //productVM.Product.ImageUrl = @"images\product\book.png";
-
+                
+                if (productVM.Product.Id == 0)
+                {
+                    _unitOfWork.Product.Add(productVM.Product);
+                    TempData["success"] = "Product created successfully";
+                }
+                else
+                {
+                    _unitOfWork.Product.Update(productVM.Product);
+                    TempData["success"] = "Product updated successfully";
+                }
+                _unitOfWork.Save();
 
                 return RedirectToAction("Index");
             }
@@ -113,7 +113,7 @@ namespace ProjectWeb.Areas.Admin.Controllers
                 });
             }
 
-            return View();
+            return View(productVM);
         }
 
         #region API CALLS
@@ -136,7 +136,7 @@ namespace ProjectWeb.Areas.Admin.Controllers
             }
 
             var oldImagePath = Path.Combine(_webHostEnvironment.WebRootPath,
-                               productToBeDeleted.ImageUrl.TrimStart('/'));
+                               productToBeDeleted.ImageUrl.TrimStart('\\'));
 
             if (System.IO.File.Exists(oldImagePath))
             {
