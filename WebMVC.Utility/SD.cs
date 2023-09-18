@@ -25,5 +25,7 @@ namespace WebMVC.Utility
 		public const string PaymentStatusDelayed = "ApprovedForDelayedPayment";
 		public const string PaymentStatusRejected = "Rejected";
 
+		public const string SessionCart = "SessionShoppingCart";
+
 	}
 }
