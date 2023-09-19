@@ -5,6 +5,7 @@ using ProjectWeb.Repository.IRepository;
 using ProjectWeb.Repository.UnitOfWork;
 using System.Diagnostics;
 using System.Security.Claims;
+using WebMVC.Utility;
 
 namespace ProjectWeb.Areas.Customer.Controllers
 {
@@ -54,15 +55,18 @@ namespace ProjectWeb.Areas.Customer.Controllers
             {
                 cartFromDb.Count += shoppingCart.Count;
                 _unitOfWork.ShoppingCart.Update(cartFromDb);
-            } else
+                _unitOfWork.Save();
+            }
+            else
                 // add cart record
             {
                 _unitOfWork.ShoppingCart.Add(shoppingCart);
+                _unitOfWork.Save();
+                HttpContext.Session.SetInt32(SD.SessionCart,
+                    _unitOfWork.ShoppingCart.GetAll(u => u.ApplicationUserId == userId).Count());
             }
 
             TempData["success"] = "Cart updated successfully";
-
-            _unitOfWork.Save();
 
             return RedirectToAction(nameof(Index));
         }
