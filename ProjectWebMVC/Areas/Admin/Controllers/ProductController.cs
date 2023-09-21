@@ -83,7 +83,7 @@ namespace ProjectWeb.Areas.Admin.Controllers
                         file.CopyTo(fileStream);
                     }
 
-                    productVM.Product.ImageUrl = @"\images\product\" + fileName;
+                    productVM.Product.ImageUrl = @"images\product\" + fileName;
                 }
 
                 //productVM.Product.ImageUrl = @"images\product\book.png";

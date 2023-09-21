@@ -13,6 +13,13 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="27261726-7763-48b0-ba95-c56e0a21c722.jpeg" />
+    <None Remove="d144c05f-d759-40ff-8d4e-f5c76f91d90e.jpg" />
+    <None Remove="e60c5726-916b-4e20-b878-c9464011adfb.jpg" />
+    <None Remove="fd0ad63f-67de-42db-a9ac-21e0c03b8cbd.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
     <_ContentIncludedByDefault Remove="wwwroot\js\product.js" />
   </ItemGroup>
 
@@ -38,6 +45,7 @@
 
   <ItemGroup>
     <Folder Include="Migrations\" />
+    <Folder Include="ViewComponents\" />
     <Folder Include="wwwroot\images\product\" />
   </ItemGroup>
 
