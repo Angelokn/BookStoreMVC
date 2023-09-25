@@ -51,6 +51,10 @@
                                         <a class="dropdown-item" asp-area="Admin" asp-controller="Company" asp-action="Index">Company</a>
                                     </li>
                                     <li><hr class="dropdown-divider"></li>
+                                    <li class="nav-item">
+                                        <a class="dropdown-item" asp-area="Admin" asp-controller="Company" asp-action="Index">Company</a>
+                                    </li>
+                                    <li><hr class="dropdown-divider"></li>
                                 </ul>
                             </li>
                         }                                      
@@ -86,5 +90,11 @@
     <script src="//cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js" asp-append-version="true"></script>
     <script src="https://cdn.tiny.cloud/1/at11luxkbmi9e3yxplfgvaf7eflosxk2p37nz9kxjn397zou/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
     @await RenderSectionAsync("Scripts", required: false)
+
+    <style>
+        .dropdown-menu a:hover{
+            background-color: #78c2ad;
+        }
+    </style>
 </body>
 </html>
