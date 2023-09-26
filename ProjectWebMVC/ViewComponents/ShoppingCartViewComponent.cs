@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using ProjectWeb.Repository.IRepository;
+using ProjectWeb.DataAccess.Repository.IRepository;
 using System.Security.Claims;
 using WebMVC.Utility;
 

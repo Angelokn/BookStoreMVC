@@ -1,7 +1,7 @@
-﻿using ProjectWeb.Data;
-using ProjectWeb.Repository.IRepository;
+﻿using ProjectWeb.DataAccess.Data;
+using ProjectWeb.DataAccess.Repository.IRepository;
 
-namespace ProjectWeb.Repository.UnitOfWork
+namespace ProjectWeb.DataAccess.Repository
 {
     public class UnitOfWork : IUnitOfWork
     {

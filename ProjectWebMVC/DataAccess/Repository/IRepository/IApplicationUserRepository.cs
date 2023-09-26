@@ -1,6 +1,6 @@
 ﻿using ProjectWeb.Models;
 
-namespace ProjectWeb.Repository.IRepository
+namespace ProjectWeb.DataAccess.Repository.IRepository
 {
     public interface IApplicationUserRepository : IRepository<ApplicationUser>
     {

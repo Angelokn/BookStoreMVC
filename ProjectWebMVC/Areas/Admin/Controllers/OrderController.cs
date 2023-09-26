@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using ProjectWeb.DataAccess.Repository.IRepository;
 using ProjectWeb.Models;
 using ProjectWeb.Models.ViewModels;
-using ProjectWeb.Repository.IRepository;
 using Stripe;
 using Stripe.Checkout;
 using System.Security.Claims;
@@ -11,7 +11,7 @@ using WebMVC.Utility;
 
 namespace ProjectWeb.Areas.Admin.Controllers
 {
-	[Area("admin")]
+    [Area("admin")]
     [Authorize]
 	public class OrderController : Controller
 	{

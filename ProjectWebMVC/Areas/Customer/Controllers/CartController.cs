@@ -2,12 +2,12 @@
 using Microsoft.AspNetCore.Mvc;
 using ProjectWeb.Models;
 using ProjectWeb.Models.ViewModels;
-using ProjectWeb.Repository.IRepository;
 using Stripe.Checkout;
 using Stripe;
 using System.Security.Claims;
 using WebMVC.Utility;
 using Microsoft.AspNetCore.Http;
+using ProjectWeb.DataAccess.Repository.IRepository;
 
 namespace ProjectWeb.Areas.Customer.Controllers
 {

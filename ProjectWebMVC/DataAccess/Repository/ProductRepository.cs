@@ -1,9 +1,8 @@
-﻿using ProjectWeb.Data;
+﻿using ProjectWeb.DataAccess.Data;
+using ProjectWeb.DataAccess.Repository.IRepository;
 using ProjectWeb.Models;
-using ProjectWeb.Repository.IRepository;
-using ProjectWeb.Repository.Repository;
 
-namespace ProjectWeb.Repository
+namespace ProjectWeb.DataAccess.Repository
 {
     public class ProductRepository : Repository<Product>, IProductRepository
     {
@@ -29,7 +28,7 @@ namespace ProjectWeb.Repository
                 objFromDb.Price10 = obj.Price10;
                 objFromDb.ListPrice = obj.ListPrice;
                 objFromDb.Author = obj.Author;
-                if(obj.ImageUrl != null)
+                if (obj.ImageUrl != null)
                 {
                     objFromDb.ImageUrl = obj.ImageUrl;
                 }

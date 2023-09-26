@@ -20,8 +20,8 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
+using ProjectWeb.DataAccess.Repository.IRepository;
 using ProjectWeb.Models;
-using ProjectWeb.Repository.IRepository;
 using WebMVC.Utility;
 
 namespace ProjectWeb.Areas.Identity.Pages.Account

@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using ProjectWeb.DataAccess.Repository.IRepository;
 using ProjectWeb.Models;
-using ProjectWeb.Repository.IRepository;
-using ProjectWeb.Repository.UnitOfWork;
+using ProjectWeb.DataAccess.Repository;
 using System.Diagnostics;
 using System.Security.Claims;
 using WebMVC.Utility;

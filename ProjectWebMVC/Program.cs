@@ -1,11 +1,11 @@
 using Microsoft.EntityFrameworkCore;
-using ProjectWeb.Data;
-using ProjectWeb.Repository.UnitOfWork;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using WebMVC.Utility;
-using ProjectWeb.Repository.IRepository;
 using Stripe;
+using ProjectWeb.DataAccess.Data;
+using ProjectWeb.DataAccess.Repository;
+using ProjectWeb.DataAccess.Repository.IRepository;
 
 var builder = WebApplication.CreateBuilder(args);
 

@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using ProjectWeb.Models;
 
-namespace ProjectWeb.Data
+namespace ProjectWeb.DataAccess.Data
 {
     public class ApplicationDbContext : IdentityDbContext<IdentityUser>
     {

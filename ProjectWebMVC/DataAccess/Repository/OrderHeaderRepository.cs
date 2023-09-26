@@ -1,10 +1,9 @@
-﻿using ProjectWeb.Data;
+﻿using ProjectWeb.DataAccess.Data;
+using ProjectWeb.DataAccess.Repository.IRepository;
 using ProjectWeb.Models;
-using ProjectWeb.Repository.IRepository;
-using ProjectWeb.Repository.Repository;
 using System.Linq.Expressions;
 
-namespace ProjectWeb.Repository
+namespace ProjectWeb.DataAccess.Repository
 {
     public class OrderHeaderRepository : Repository<OrderHeader>, IOrderHeaderRepository
     {
@@ -20,9 +19,9 @@ namespace ProjectWeb.Repository
             _db.OrderHeaders.Update(obj);
         }
 
-		public void UpdateStatus(int id, string orderStatus, string? paymentStatus = null)
-		{
-			var orderFromDb = _db.OrderHeaders.FirstOrDefault(u => u.Id == id);
+        public void UpdateStatus(int id, string orderStatus, string? paymentStatus = null)
+        {
+            var orderFromDb = _db.OrderHeaders.FirstOrDefault(u => u.Id == id);
             if (orderFromDb != null)
             {
                 orderFromDb.OrderStatus = orderStatus;
@@ -31,20 +30,20 @@ namespace ProjectWeb.Repository
                     orderFromDb.PaymentStatus = paymentStatus;
                 }
             }
-		}
+        }
 
-		public void UpdateStripePaymentId(int id, string sessionId, string paymentIntentId)
-		{
-			var orderFromDb = _db.OrderHeaders.FirstOrDefault(u => u.Id == id);
+        public void UpdateStripePaymentId(int id, string sessionId, string paymentIntentId)
+        {
+            var orderFromDb = _db.OrderHeaders.FirstOrDefault(u => u.Id == id);
             if (!string.IsNullOrEmpty(sessionId))
             {
                 orderFromDb.SessionId = sessionId;
             }
-			if (!string.IsNullOrEmpty(sessionId))
-			{
-				orderFromDb.PaymentIntentId = paymentIntentId;
+            if (!string.IsNullOrEmpty(sessionId))
+            {
+                orderFromDb.PaymentIntentId = paymentIntentId;
                 orderFromDb.PaymentDate = DateTime.Now;
-			}
-		}
-	}
+            }
+        }
+    }
 }

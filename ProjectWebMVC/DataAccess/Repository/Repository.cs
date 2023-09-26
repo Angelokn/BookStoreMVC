@@ -1,9 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using ProjectWeb.Data;
-using ProjectWeb.Repository.IRepository;
+using ProjectWeb.DataAccess.Data;
+using ProjectWeb.DataAccess.Repository.IRepository;
 using System.Linq.Expressions;
 
-namespace ProjectWeb.Repository.Repository
+namespace ProjectWeb.DataAccess.Repository
 {
     public class Repository<T> : IRepository<T> where T : class
     {
@@ -48,19 +48,19 @@ namespace ProjectWeb.Repository.Repository
             }
 
             return query.FirstOrDefault();
-        }   
+        }
 
         public IEnumerable<T> GetAll(Expression<Func<T, bool>>? filter, string? includeProperties = null)
         {
             IQueryable<T> query = dbSet;
-            if(filter != null)
+            if (filter != null)
             {
                 query = query.Where(filter);
             }
 
             if (!string.IsNullOrEmpty(includeProperties))
             {
-                foreach(var includeProp in includeProperties
+                foreach (var includeProp in includeProperties
                     .Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
                 {
                     query = query.Include(includeProp);

@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using ProjectWeb.DataAccess.Repository.IRepository;
 using ProjectWeb.Models;
-using ProjectWeb.Repository.IRepository;
 using WebMVC.Utility;
 
 namespace ProjectWeb.Areas.Admin.Controllers

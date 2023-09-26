@@ -1,4 +1,4 @@
-﻿namespace ProjectWeb.Repository.IRepository
+﻿namespace ProjectWeb.DataAccess.Repository.IRepository
 {
     public interface IUnitOfWork
     {

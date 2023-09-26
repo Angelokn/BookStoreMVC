@@ -1,10 +1,9 @@
-﻿using ProjectWeb.Data;
+﻿using ProjectWeb.DataAccess.Data;
+using ProjectWeb.DataAccess.Repository.IRepository;
 using ProjectWeb.Models;
-using ProjectWeb.Repository.IRepository;
-using ProjectWeb.Repository.Repository;
 using System.Linq.Expressions;
 
-namespace ProjectWeb.Repository
+namespace ProjectWeb.DataAccess.Repository
 {
     public class ShoppingCartRepository : Repository<ShoppingCart>, IShoppingCartRepository
     {
