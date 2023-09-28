@@ -30,6 +30,8 @@ namespace ProjectWeb.Areas.Admin.Controllers
         public IActionResult GetAll()
         {
             List<ApplicationUser> objUserList = _db.ApplicationUsers.Include(u => u.Company).ToList();
+
+    
             return Json(new { data = objUserList });
         }
 
