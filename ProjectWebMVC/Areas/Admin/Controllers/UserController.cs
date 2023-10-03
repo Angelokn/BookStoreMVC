@@ -34,8 +34,13 @@ namespace ProjectWeb.Areas.Admin.Controllers
                 RoleList = _db.Roles.Select(i => new SelectListItem
                 {
                     Text = i.Name,
-                    Value = i.Id.ToString()
+                    Value = i.Name
                 }),
+                CompanyList = _db.Companies.Select(i => new SelectListItem
+                {
+                    Text = i.Name,
+                    Value = i.Id.ToString()
+                })
             };
 
             RoleVM.ApplicationUser.Role = _db.Roles.FirstOrDefault(u => u.Id == RoleID).Name;
@@ -61,7 +66,7 @@ namespace ProjectWeb.Areas.Admin.Controllers
 
                 if (user.Company == null)
                 {
-                    user.Company = new() { Name = "" };
+                    user.Company = new Company() { Name = "" };
                 }
             }
 

@@ -1,4 +1,5 @@
-﻿@model RoleManagementVM
+﻿@using WebMVC.Utility;
+@model RoleManagementVM
 
 <div class="card shadow border-0 mt-4 ">
     <div class="card-header bg-info bg-gradient ml-0 py-3">
@@ -19,8 +20,15 @@
                 <div class="mb-3 row p-1">
                    <select asp-for="ApplicationUser.Role" asp-items="@Model.RoleList" class="form-select"></select>
                 </div>
+                @{
+                    var companyVisible = "display:none;";
+                }
+                @if (Model.ApplicationUser.Role == SD.Role_Company)
+                {
+                    companyVisible = "display:block;";
+                }
                 <div class="mb-3 row p-1">
-                    <select asp-for="ApplicationUser.CompanyId" asp-items="@Model.CompanyList" class="form-select"></select>
+                    <select asp-for="ApplicationUser.CompanyId" style="@companyVisible" asp-items="@Model.CompanyList" class="form-select"></select>
                 </div>
 
                 <div class="row pt-2">
@@ -44,4 +52,16 @@
     @{
         <partial name="_ValidationScriptsPartial" />
     }
+    <script>
+        $(document).ready(function () {
+            $('#ApplicationUser_Role').change(function () {
+                var selection = $('#ApplicationUser_Role Option:Selected').text();
+                if (selection == 'Company') {
+                    $('#ApplicationUser_CompanyId').show()
+                } else {
+                    $('#ApplicationUser_CompanyId').hide()
+                }
+            })
+        })
+    </script>
 }
