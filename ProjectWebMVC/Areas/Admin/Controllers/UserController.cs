@@ -72,9 +72,11 @@ namespace ProjectWeb.Areas.Admin.Controllers
                 }
 
                 _db.SaveChanges();
+                _userManager.RemoveFromRoleAsync(applicationUser, oldRole).GetAwaiter().GetResult();
+                _userManager.AddToRoleAsync(applicationUser, roleManagementVM.ApplicationUser.Role).GetAwaiter().GetResult();
             }
 
-            return View();
+            return RedirectToAction("Index");
         }
 
 
