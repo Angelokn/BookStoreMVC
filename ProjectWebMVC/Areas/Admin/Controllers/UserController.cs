@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -15,6 +16,7 @@ namespace ProjectWeb.Areas.Admin.Controllers
     public class UserController : Controller
     {
         private readonly ApplicationDbContext _db;
+
         public UserController(ApplicationDbContext db)
         {
             _db = db;
@@ -46,6 +48,32 @@ namespace ProjectWeb.Areas.Admin.Controllers
             RoleVM.ApplicationUser.Role = _db.Roles.FirstOrDefault(u => u.Id == RoleID).Name;
 
             return View(RoleVM);
+        }
+
+        [HttpPost]
+        public IActionResult RoleManagement(RoleManagementVM roleManagementVM)
+        {
+            string RoleID = _db.UserRoles.FirstOrDefault(u => u.UserId == roleManagementVM.ApplicationUser.Id).RoleId;
+            string oldRole = _db.Roles.FirstOrDefault(u => u.Id == RoleID).Name;
+
+            if (!(roleManagementVM.ApplicationUser.Role == oldRole))
+            {
+                // role was updated
+                ApplicationUser applicationUser = _db.ApplicationUsers.FirstOrDefault(u => u.Id == roleManagementVM.ApplicationUser.Id);
+                if (roleManagementVM.ApplicationUser.Role == SD.Role_Company)
+                {
+                    applicationUser.CompanyId = roleManagementVM.ApplicationUser.CompanyId;
+                }
+
+                if (oldRole == SD.Role_Company)
+                {
+                    applicationUser.CompanyId = null;
+                }
+
+                _db.SaveChanges();
+            }
+
+            return View();
         }
 
 
