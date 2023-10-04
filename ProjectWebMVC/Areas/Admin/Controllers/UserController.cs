@@ -16,10 +16,11 @@ namespace ProjectWeb.Areas.Admin.Controllers
     public class UserController : Controller
     {
         private readonly ApplicationDbContext _db;
-
-        public UserController(ApplicationDbContext db)
+        private readonly UserManager<IdentityUser> _userManager;
+        public UserController(ApplicationDbContext db, UserManager<IdentityUser> userManager)
         {
             _db = db;
+            _userManager = userManager;
         }
         public IActionResult Index()
         {
