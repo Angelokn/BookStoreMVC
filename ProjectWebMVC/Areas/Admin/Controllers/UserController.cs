@@ -56,11 +56,14 @@ namespace ProjectWeb.Areas.Admin.Controllers
         {
             string RoleID = _db.UserRoles.FirstOrDefault(u => u.UserId == roleManagementVM.ApplicationUser.Id).RoleId;
             string oldRole = _db.Roles.FirstOrDefault(u => u.Id == RoleID).Name;
+            //string CompanyID = _db.Companies.FirstOrDefault(u => u.Id == roleManagementVM.ApplicationUser.CompanyId).Name;
+            //string oldCompany = _db.Companies.FirstOrDefault(u => u.Name == CompanyID).Name;
+
+            ApplicationUser applicationUser = _db.ApplicationUsers.FirstOrDefault(u => u.Id == roleManagementVM.ApplicationUser.Id);
 
             if (!(roleManagementVM.ApplicationUser.Role == oldRole))
             {
                 // role was updated
-                ApplicationUser applicationUser = _db.ApplicationUsers.FirstOrDefault(u => u.Id == roleManagementVM.ApplicationUser.Id);
                 if (roleManagementVM.ApplicationUser.Role == SD.Role_Company)
                 {
                     applicationUser.CompanyId = roleManagementVM.ApplicationUser.CompanyId;
@@ -74,6 +77,13 @@ namespace ProjectWeb.Areas.Admin.Controllers
                 _db.SaveChanges();
                 _userManager.RemoveFromRoleAsync(applicationUser, oldRole).GetAwaiter().GetResult();
                 _userManager.AddToRoleAsync(applicationUser, roleManagementVM.ApplicationUser.Role).GetAwaiter().GetResult();
+            }
+
+            if (roleManagementVM.ApplicationUser.Role == SD.Role_Company)
+            {
+                applicationUser.CompanyId = roleManagementVM.ApplicationUser.CompanyId;
+
+                _db.SaveChanges();
             }
 
             return RedirectToAction("Index");
