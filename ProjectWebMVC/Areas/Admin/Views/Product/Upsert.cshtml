@@ -11,7 +11,7 @@
     <div class="card-body p-4">
         <form method="post" class="" enctype="multipart/form-data">
             <input asp-for="Product.Id" hidden />
-            <input asp-for="Product.ImageUrl" hidden />
+            @* <input asp-for="Product.ImageUrl" hidden /> *@
 
             <div class="border p-3 m-4">
                 <div class="mb-3 row p-1 col-12">
@@ -27,7 +27,7 @@
                         </div>
                     </div>
                     <div class="col-4">
-                         <img src="\@Model.Product.ImageUrl" width="100%"
+                         @* <img src="\@Model.Product.ImageUrl" width="100%" *@
                          style="border-radius:5px; border:1px solid #bbb9b9" />
                     </div>
                 </div>
@@ -76,7 +76,7 @@
                     <span asp-validation-for="Product.CategoryId" class="text-danger"></span>
                 </div>
                 <div class="mb-3 row p-1">
-                    <label asp-for="Product.ImageUrl" class="p-0">Book cover image</label>
+                    @* <label asp-for="Product.ImageUrl" class="p-0">Book cover image</label> *@
                     <input required type="file" name="file" class="form-control" />
                 </div>
 

@@ -51,8 +51,7 @@ namespace ProjectWeb.DataAccess.Data
                     Price = 90,
                     Price3 = 85,
                     Price10 = 80,
-                    CategoryId = 1,
-                    ImageUrl = ""
+                    CategoryId = 1
                 },
                 new Product
                 {
@@ -65,8 +64,7 @@ namespace ProjectWeb.DataAccess.Data
                     Price = 30,
                     Price3 = 25,
                     Price10 = 20,
-                    CategoryId = 2,
-                    ImageUrl = ""
+                    CategoryId = 2
                 },
                 new Product
                 {
@@ -79,8 +77,7 @@ namespace ProjectWeb.DataAccess.Data
                     Price = 50,
                     Price3 = 40,
                     Price10 = 35,
-                    CategoryId = 1,
-                    ImageUrl = ""
+                    CategoryId = 1
                 },
                 new Product
                 {
@@ -93,8 +90,7 @@ namespace ProjectWeb.DataAccess.Data
                     Price = 65,
                     Price3 = 60,
                     Price10 = 55,
-                    CategoryId = 3,
-                    ImageUrl = ""
+                    CategoryId = 3
                 },
                 new Product
                 {
@@ -107,8 +103,7 @@ namespace ProjectWeb.DataAccess.Data
                     Price = 27,
                     Price3 = 25,
                     Price10 = 20,
-                    CategoryId = 2,
-                    ImageUrl = ""
+                    CategoryId = 2
                 },
                 new Product
                 {
@@ -121,8 +116,7 @@ namespace ProjectWeb.DataAccess.Data
                     Price = 23,
                     Price3 = 22,
                     Price10 = 20,
-                    CategoryId = 1,
-                    ImageUrl = ""
+                    CategoryId = 1
                 }
                 );
         }
