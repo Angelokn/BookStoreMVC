@@ -110,6 +110,7 @@ namespace ProjectWeb.Areas.Admin.Controllers
                     _unitOfWork.Save();
                 }
 
+                TempData["success"] = "Product created/updated successfully";
                 return RedirectToAction("Index");
             }
             //Handling when ModelState is not valid, asking the user
