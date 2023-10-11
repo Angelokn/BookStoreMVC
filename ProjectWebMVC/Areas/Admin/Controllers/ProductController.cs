@@ -108,26 +108,7 @@ namespace ProjectWeb.Areas.Admin.Controllers
 
                     _unitOfWork.Product.Update(productVM.Product);
                     _unitOfWork.Save();
-
-
-                    //if (!string.IsNullOrEmpty(productVM.Product.ImageUrl))
-                    //{
-                    //    //delete the old image
-                    //    var oldImagePath = Path.Combine(wwwRootPath, productVM.Product.ImageUrl.TrimStart('\\'));
-
-                    //    if (System.IO.File.Exists(oldImagePath))
-                    //    {
-                    //        System.IO.File.Delete(oldImagePath);
-                    //    }
-                    //}
-
-
-
-                    //productVM.Product.ImageUrl = @"images\product\" + fileName;
                 }
-
-                //productVM.Product.ImageUrl = @"images\product\book.png";
-                
 
                 return RedirectToAction("Index");
             }

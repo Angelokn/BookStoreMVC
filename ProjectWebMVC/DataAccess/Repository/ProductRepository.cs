@@ -28,6 +28,7 @@ namespace ProjectWeb.DataAccess.Repository
                 objFromDb.Price10 = obj.Price10;
                 objFromDb.ListPrice = obj.ListPrice;
                 objFromDb.Author = obj.Author;
+                objFromDb.ProductImages = obj.ProductImages;
                 //if (obj.ImageUrl != null)
                 //{
                 //    objFromDb.ImageUrl = obj.ImageUrl;
