@@ -11,8 +11,6 @@
     <div class="card-body p-4">
         <form method="post" class="" enctype="multipart/form-data">
             <input asp-for="Product.Id" hidden />
-            @* <input asp-for="Product.ImageUrl" hidden /> *@
-
             <div class="border p-3 m-4">
                 <div class="mb-3 row p-1 col-12">
                     <label asp-for="Product.Title" class="p-0">Book Title</label>
@@ -76,8 +74,8 @@
                     <span asp-validation-for="Product.CategoryId" class="text-danger"></span>
                 </div>
                 <div class="mb-3 row p-1">
-                    @* <label asp-for="Product.ImageUrl" class="p-0">Book cover image</label> *@
-                    <input required type="file" name="file" class="form-control" />
+                    <label asp-for="Product.ProductImages" class="p-0">Book cover image</label>
+                    <input type="file" name="files" class="form-control" multiple />
                 </div>
 
                 <div class="row pt-2">
