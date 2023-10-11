@@ -55,17 +55,60 @@ namespace ProjectWeb.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public IActionResult Upsert(ProductVM productVM, IFormFile? file)
+        public IActionResult Upsert(ProductVM productVM, List<IFormFile> files)
         {
 
             if (ModelState.IsValid)
             {
+                if (productVM.Product.Id == 0)
+                {
+                    _unitOfWork.Product.Add(productVM.Product);
+                    TempData["success"] = "Product created successfully";
+                }
+                else
+                {
+                    _unitOfWork.Product.Update(productVM.Product);
+                    TempData["success"] = "Product updated successfully";
+                }
+                _unitOfWork.Save();
+
                 string wwwRootPath = _webHostEnvironment.WebRootPath;
                 
-                if (file  != null)
+                if (files  != null)
                 {
-                    string fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
-                    string productPath = Path.Combine(wwwRootPath,  @"images\product\");
+                    foreach (IFormFile file in files)
+                    {
+                        string fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
+                        string productPath = @"images\products\product-" + productVM.Product.Id;
+                        string finalPath = Path.Combine(wwwRootPath, productPath);
+
+                        if (!Directory.Exists(finalPath))
+                        {
+                            Directory.CreateDirectory(finalPath);
+                        }
+
+                        using (var fileStream = new FileStream(Path.Combine(finalPath, fileName), FileMode.Create))
+                        {
+                            file.CopyTo(fileStream);
+                        }
+
+                        ProductImage productImage = new()
+                        {
+                            ImageUrl = @"\" + productPath + @"\" + fileName,
+                            ProductId = productVM.Product.Id,
+                        };
+
+                        if(productVM.Product.ProductImages == null)
+                        {
+                            productVM.Product.ProductImages = new List<ProductImage>();
+                        }
+
+                        productVM.Product.ProductImages.Add(productImage);
+                    }
+
+                    _unitOfWork.Product.Update(productVM.Product);
+                    _unitOfWork.Save();
+
 
                     //if (!string.IsNullOrEmpty(productVM.Product.ImageUrl))
                     //{
@@ -78,27 +121,13 @@ namespace ProjectWeb.Areas.Admin.Controllers
                     //    }
                     //}
 
-                    //using (var fileStream = new FileStream(Path.Combine(productPath, fileName), FileMode.Create))
-                    //{
-                    //    file.CopyTo(fileStream);
-                    //}
+
 
                     //productVM.Product.ImageUrl = @"images\product\" + fileName;
                 }
 
                 //productVM.Product.ImageUrl = @"images\product\book.png";
                 
-                if (productVM.Product.Id == 0)
-                {
-                    _unitOfWork.Product.Add(productVM.Product);
-                    TempData["success"] = "Product created successfully";
-                }
-                else
-                {
-                    _unitOfWork.Product.Update(productVM.Product);
-                    TempData["success"] = "Product updated successfully";
-                }
-                _unitOfWork.Save();
 
                 return RedirectToAction("Index");
             }
