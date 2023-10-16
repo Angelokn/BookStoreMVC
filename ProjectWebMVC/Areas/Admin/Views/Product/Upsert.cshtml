@@ -24,14 +24,17 @@
                             <textarea asp-for="Product.Description" class="form-control"></textarea>
                         </div>
                     </div>
-                    <div class="col-4">
+                    <div class="col-2">
                         @if (Model.Product.ProductImages != null)
                         {
                             foreach (var image in Model.Product.ProductImages)
                             {
                                 <div class="border p-1 m-2 text-center">
-                                    <img src="\@image.ImageUrl" width="100%"
-                                         style="border-radius:5px; border:1px solid #bbb9b9" />
+                                    <img src="@image.ImageUrl" width="100%"
+                                         style="border-radius:5px; border:1px solid #bbb9b9; display:grid;" />
+                                         <a asp-action="DeleteImage" class="btn btn-secondary" asp-route-ImageId="@image.Id">
+                                             <i class="bi bi-trash-fill"></i> Delete
+                                         </a>
                                 </div>
                             }
                         }
@@ -111,7 +114,7 @@
                         foreach(var image in Model.Product.ProductImages)
                         {
                             <div class="border p-1 m-2 text-center">
-                                <img src="\@image.ImageUrl" width="100%"
+                                <img src="@image.ImageUrl" width="100%"
                                      style="border-radius:5px; border:1px solid #bbb9b9" />
                             </div>
                         }
