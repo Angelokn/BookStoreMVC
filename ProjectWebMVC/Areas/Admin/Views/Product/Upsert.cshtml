@@ -24,14 +24,14 @@
                             <textarea asp-for="Product.Description" class="form-control"></textarea>
                         </div>
                     </div>
-                    <div class="col-2">
+                    <div class="col-2" style="display:grid; grid-template-columns:100% 100%">
                         @if (Model.Product.ProductImages != null)
                         {
                             foreach (var image in Model.Product.ProductImages)
                             {
-                                <div class="border p-1 m-2 text-center">
+                                <div class="p-1 m-2 text-center">
                                     <img src="@image.ImageUrl" width="100%"
-                                         style="border-radius:5px; border:1px solid #bbb9b9; display:grid;" />
+                                         style="border-radius:5px; border:1px solid #bbb9b9;" />
                                          <a asp-action="DeleteImage" class="btn btn-secondary" asp-route-ImageId="@image.Id">
                                              <i class="bi bi-trash-fill"></i> Delete
                                          </a>
