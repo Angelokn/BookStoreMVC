@@ -25,7 +25,7 @@
                         
                         @if (Model.Product.ProductImages != null && Model.Product.ProductImages.Count() > 0)
                         {
-                            <div id="carouselExampleIndicators" class="carousel slide">
+                            <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
 
                                 <div class="carousel-indicators">
                                     @foreach (var imageWithIndex in Model.Product
@@ -33,7 +33,6 @@
                                     {
                                         <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="@imageWithIndex.Index"
                                         class="@(imageWithIndex.Index==0?"active":"")" aria-current="true" aria-label="Slide 1"></button>
-
                                     }
                                 </div>
 
@@ -41,7 +40,7 @@
                                     @foreach (var imageWithIndex in Model.Product
                                    .ProductImages.Select((image, index) => new { Image = image, Index = index }))
                                     {
-                                        <div class="@imageWithIndex.Index==0?"carousel-item-active":"carousel-item")">
+                                        <div class="@(imageWithIndex.Index==0?"carousel-item active":"carousel-item")">
                                             <img src="@imageWithIndex.Image.ImageUrl" class="d-block w-100" alt="...">
                                         </div>
                                     }
