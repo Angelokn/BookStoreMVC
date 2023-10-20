@@ -75,17 +75,28 @@ namespace ProjectWeb.Areas.Admin.Controllers
                     applicationUser.CompanyId = null;
                 }
 
-                _db.SaveChanges();
+                _unitOfWork.ApplicationUser.Update(applicationUser);
+                _unitOfWork.Save();
+
                 _userManager.RemoveFromRoleAsync(applicationUser, oldRole).GetAwaiter().GetResult();
                 _userManager.AddToRoleAsync(applicationUser, roleManagementVM.ApplicationUser.Role).GetAwaiter().GetResult();
             }
-
-            if (roleManagementVM.ApplicationUser.Role == SD.Role_Company)
+            else
             {
-                applicationUser.CompanyId = roleManagementVM.ApplicationUser.CompanyId;
-
-                _db.SaveChanges();
+                if (oldRole == SD.Role_Company && applicationUser.CompanyId != roleManagementVM.ApplicationUser.CompanyId)
+                {
+                    applicationUser.CompanyId = roleManagementVM.ApplicationUser.CompanyId;
+                    _unitOfWork.ApplicationUser.Update(applicationUser);
+                    _unitOfWork.Save();
+                }
             }
+
+            //if (roleManagementVM.ApplicationUser.Role == SD.Role_Company)
+            //{
+            //    applicationUser.CompanyId = roleManagementVM.ApplicationUser.CompanyId;
+
+            //    _db.SaveChanges();
+            //}
 
             return RedirectToAction("Index");
         }
