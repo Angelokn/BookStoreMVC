@@ -94,8 +94,8 @@ namespace ProjectWeb.Areas.Admin.Controllers
             //if (roleManagementVM.ApplicationUser.Role == SD.Role_Company)
             //{
             //    applicationUser.CompanyId = roleManagementVM.ApplicationUser.CompanyId;
-
-            //    _db.SaveChanges();
+            //    _unitOfWork.ApplicationUser.Update(applicationUser);
+            //    _unitOfWork.Save();
             //}
 
             return RedirectToAction("Index");
@@ -107,15 +107,11 @@ namespace ProjectWeb.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult GetAll()
         {
-            List<ApplicationUser> objUserList = _db.ApplicationUsers.Include(u => u.Company).ToList();
-
-            var userRoles = _db.UserRoles.ToList();
-            var roles = _db.Roles.ToList();
+            List<ApplicationUser> objUserList = _unitOfWork.ApplicationUser.GetAll(includeProperties:"Company").ToList();
 
             foreach(var user in objUserList)
             {
-                var roleId = userRoles.FirstOrDefault(u => u.UserId == user.Id).RoleId;
-                user.Role = roles.FirstOrDefault(u => u.Id == roleId).Name;
+                user.Role = _userManager.GetRolesAsync(user).GetAwaiter().GetResult().FirstOrDefault();
 
                 if (user.Company == null)
                 {
@@ -129,7 +125,7 @@ namespace ProjectWeb.Areas.Admin.Controllers
         [HttpPost]
         public IActionResult LockUnlock([FromBody]string id)
         {
-            var objFromDb = _db.ApplicationUsers.FirstOrDefault(u => u.Id == id);
+            var objFromDb = _unitOfWork.ApplicationUser.Get(u => u.Id == id);
 
             if (objFromDb == null)
             {
@@ -146,7 +142,9 @@ namespace ProjectWeb.Areas.Admin.Controllers
                 objFromDb.LockoutEnd = DateTime.Now.AddYears(100);
             }
 
-            _db.SaveChanges();
+            _unitOfWork.ApplicationUser.Update(objFromDb);
+            _unitOfWork.Save();
+
             return Json(new { success = true, message = "Operation Successful" });
         }
 
