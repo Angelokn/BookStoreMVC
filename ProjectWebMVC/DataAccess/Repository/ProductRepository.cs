@@ -15,7 +15,6 @@ namespace ProjectWeb.DataAccess.Repository
 
         public void Update(Product obj)
         {
-            //_db.Products.Update(obj);
             var objFromDb = _db.Products.FirstOrDefault(u => u.Id == obj.Id);
             if (objFromDb != null)
             {
@@ -29,10 +28,6 @@ namespace ProjectWeb.DataAccess.Repository
                 objFromDb.ListPrice = obj.ListPrice;
                 objFromDb.Author = obj.Author;
                 objFromDb.ProductImages = obj.ProductImages;
-                //if (obj.ImageUrl != null)
-                //{
-                //    objFromDb.ImageUrl = obj.ImageUrl;
-                //}
             }
         }
     }
